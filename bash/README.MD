@@ -37,12 +37,12 @@ La actividad se divide en diferentes bloques de aprendizaje:
 
 1. **Clona este repositorio** en tu equipo local:
    ```bash
-   git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+   git clone https://github.com/norahnordlander/addscripts.git
    ```
 
 2. **Accede al directorio** del proyecto:
    ```bash
-   cd TU_REPOSITORIO
+   cd addscripts
    ```
 
 3. **Ejecuta cualquier script** directamente (ya cuentan con permisos de ejecución):
