@@ -10,6 +10,8 @@
 
 **👩‍💻 Norah Rodríguez Sánchez** · 2º ASIR · CIFP Villa de Agüimes
 
+![Estado](https://img.shields.io/badge/Estado-Completado-success?style=flat-square)
+
 </div>
 
 ---
@@ -40,10 +42,24 @@
 |:--:|----------|---------|:------:|
 | 4 | 🗑️ Desinstalación de programas desde un listado | [`norahsp31-4.sh`](norahsp31-4.sh) + [`programas.txt`](programas.txt) | ✅ |
 | 5 | 🩺 Informe de errores de `/var/log` | [`norahsp31-5.sh`](norahsp31-5.sh) | ✅ |
-| 7 | 💽 Monitorización del espacio en disco con `cron` | `norahsp31-7.sh` | ⏳ |
-| 8 | 💾 Copias de seguridad con `cron` y `anacron` | scripts en `/scrnorah` | ⏳ |
-| 9 | 🔄 Sincronización con `rsync` + temporizador `systemd` | `norahsp31-9.sh` + `.service` + `.timer` | ⏳ |
-| 10 | 🔥 Prueba de estrés y monitorización con `sysstat` | `norahsp31-10.json` | ⏳ |
+| 7 | 💽 Monitorización del espacio en disco con `cron` | [`norahsp31-7.sh`](norahsp31-7.sh) | ✅ |
+| 8 | 💾 Copias de seguridad con `cron` y `anacron` | [`copia_total.sh`](copia_total.sh) · [`copia_diferencial.sh`](copia_diferencial.sh) · [`limpieza.sh`](limpieza.sh) | ✅ |
+| 9 | 🔄 Sincronización con `rsync` + temporizador `systemd` | [`norahsp31-9.sh`](norahsp31-9.sh) · [`.service`](norah-espejo.service) · [`.timer`](norah-espejo.timer) | ✅ |
+| 10 | 🔥 Prueba de estrés y monitorización con `sysstat` | [`norahsp31-10.json`](norahsp31-10.json) | ✅ |
+
+---
+
+## ⏱️ Programación de tareas
+
+| Herramienta | Programación | Tarea |
+|-------------|--------------|-------|
+| 🪟 Programador de tareas | Diaria, 02:00 | Limpieza de `C:\Windows\Temp` |
+| 🪟 PowerShell | Al iniciar el sistema | Actualización y análisis de Windows Defender |
+| 🐧 `cron` | `*/15 8-14 * * 1-5` | Monitorización del disco (umbral 80 %) |
+| 🐧 `cron` | `0 23 * * 5` | Copia diferencial semanal `CopDifSem-<semana>` |
+| 🐧 `anacron` | `@monthly` | Limpieza de diferenciales |
+| 🐧 `anacron` | `@monthly` | Copia total `CopTot-<mes><año>` |
+| 🐧 `systemd timer` | Diario, 22:00 | Espejo de `/home/usnorah` con `rsync` |
 
 ---
 
@@ -54,26 +70,21 @@
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
 
-# Inicios de sesión entre dos fechas
-.\norahsp31-2.ps1 -Inicio "2026-10-01" -Fin "2026-11-02"
-
-# Menú interactivo de registros de eventos
-.\norahsp31-3.ps1
-
-# Crear la tarea programada con PowerShell
-.\norahsp31-6.ps1
+.\norahsp31-2.ps1 -Inicio "2026-10-01" -Fin "2026-11-02"   # Inicios de sesión
+.\norahsp31-3.ps1                                          # Menú de registros
+.\norahsp31-6.ps1                                          # Crear tarea programada
 ```
 
 ### Bash
 
 ```bash
-chmod +x norahsp31-*.sh
+chmod +x *.sh
 
-# Desinstalar los programas de programas.txt (mismo directorio)
-sudo ./norahsp31-4.sh
-
-# Generar el informe de errores de /var/log
-sudo ./norahsp31-5.sh
+sudo ./norahsp31-4.sh       # Desinstalar programas de programas.txt
+sudo ./norahsp31-5.sh       # Informe de errores de /var/log
+sudo ./norahsp31-7.sh       # Comprobar ocupación de disco (umbral 80 %)
+sudo ./norahsp31-7.sh 10    # Prueba con umbral 10 %
+sudo ./norahsp31-9.sh       # Sincronización espejo con rsync
 ```
 
 ---
@@ -90,7 +101,12 @@ UT03/
 ├── 🐧 programas.txt
 ├── 🐧 norahsp31-5.sh
 ├── 🐧 norahsp31-7.sh
-├── 🐧 norahsp31-9.sh
+├── 💾 copia_total.sh
+├── 💾 copia_diferencial.sh
+├── 💾 limpieza.sh
+├── 🔄 norahsp31-9.sh
+├── ⏲️ norah-espejo.service
+├── ⏲️ norah-espejo.timer
 └── 📊 norahsp31-10.json
 ```
 
