@@ -38,8 +38,8 @@
 
 | Nº | Apartado | Archivo | Estado |
 |:--:|----------|---------|:------:|
-| 4 | 🗑️ Desinstalación de programas desde un listado | `norahsp31-4.sh` + `programas.txt` | ⏳ |
-| 5 | 🩺 Informe de errores de `/var/log` | `norahsp31-5.sh` | ⏳ |
+| 4 | 🗑️ Desinstalación de programas desde un listado | [`norahsp31-4.sh`](norahsp31-4.sh) + [`programas.txt`](programas.txt) | ✅ |
+| 5 | 🩺 Informe de errores de `/var/log` | [`norahsp31-5.sh`](norahsp31-5.sh) | ✅ |
 | 7 | 💽 Monitorización del espacio en disco con `cron` | `norahsp31-7.sh` | ⏳ |
 | 8 | 💾 Copias de seguridad con `cron` y `anacron` | scripts en `/scrnorah` | ⏳ |
 | 9 | 🔄 Sincronización con `rsync` + temporizador `systemd` | `norahsp31-9.sh` + `.service` + `.timer` | ⏳ |
@@ -68,9 +68,38 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
 
 ```bash
 chmod +x norahsp31-*.sh
+
+# Desinstalar los programas de programas.txt (mismo directorio)
 sudo ./norahsp31-4.sh
+
+# Generar el informe de errores de /var/log
+sudo ./norahsp31-5.sh
 ```
 
 ---
 
 ## 📁 Estructura
+
+```
+UT03/
+├── 📄 README.md
+├── 🪟 norahsp31-2.ps1
+├── 🪟 norahsp31-3.ps1
+├── 🪟 norahsp31-6.ps1
+├── 🐧 norahsp31-4.sh
+├── 🐧 programas.txt
+├── 🐧 norahsp31-5.sh
+├── 🐧 norahsp31-7.sh
+├── 🐧 norahsp31-9.sh
+└── 📊 norahsp31-10.json
+```
+
+---
+
+<div align="center">
+
+⚠️ *Los scripts de Windows deben ejecutarse en PowerShell **como administrador** y los de Ubuntu con **sudo**.*
+
+📚 **Módulo SGY** · Curso 2026-2027
+
+</div>
