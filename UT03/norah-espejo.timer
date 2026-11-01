@@ -1,0 +1,10 @@
+[Unit]
+Description=Norah - Ejecuta la sincronizacion espejo todos los dias a las 22:00
+
+[Timer]
+OnCalendar=*-*-* 22:00:00
+Persistent=true
+Unit=norah-espejo.service
+
+[Install]
+WantedBy=timers.target

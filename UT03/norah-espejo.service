@@ -1,0 +1,6 @@
+[Unit]
+Description=Norah - Sincronizacion espejo del directorio personal con rsync
+
+[Service]
+Type=oneshot
+ExecStart=/home/usnorah/UT03/norahsp31-9.sh
