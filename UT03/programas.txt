@@ -1,0 +1,5 @@
+cowsay
+sl
+lolcat
+figlet
+tree
